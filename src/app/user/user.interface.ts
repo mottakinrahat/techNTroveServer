@@ -8,6 +8,7 @@ export interface TUser {
   email: string;
   password: string;
   role: "admin" | "user";
+  isDeleted: boolean;
 }
 
 export type TLoginUser = {

@@ -1,8 +1,11 @@
 import { Router } from "express";
-import { recentEventRoutes } from "../modules/recentEvent/recentEvent.route";
 import { EventItemRoutes } from "../modules/EventItem/eventItem.route";
 import { serviceRoutes } from "../modules/services/services.route";
 import { ClientRoutes } from "../modules/Client/client.route";
+import { UserRoutes } from "../user/user.route";
+import { productRoutes } from "../modules/product/product.route";
+import { brandRoutes } from "../modules/brand/brand.route";
+import { ReviewRoutes } from "../modules/review/review.route";
 
 const router = Router();
 const moduleRoutes = [
@@ -15,12 +18,28 @@ const moduleRoutes = [
     route: serviceRoutes,
   },
   {
-    path: "/recentEvent",
-    route: recentEventRoutes,
-  },
-  {
     path: "/client",
     route: ClientRoutes,
+  },
+  {
+    path: "/products",
+    route: productRoutes,
+  },
+  {
+    path: "/brands",
+    route: brandRoutes,
+  },
+  {
+    path: "/products",
+    route: productRoutes,
+  },
+  {
+    path: "/review",
+    route: ReviewRoutes,
+  },
+  {
+    path: "/auth",
+    route: UserRoutes,
   },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
