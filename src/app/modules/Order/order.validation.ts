@@ -2,7 +2,7 @@ import { z } from "zod";
 
 // Define schema for product ID
 const ProductIdSchema = z.object({
-  productId: z.string(),
+  productId: z.string().nonempty("Product ID is required"),
 });
 
 // Define schema for order
