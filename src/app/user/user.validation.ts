@@ -17,6 +17,7 @@ const userValidationSchema = z.object({
     }),
   isDeleted: z.boolean().optional(),
   role: z.enum(["user", "admin"]).default("user"),
+  status: z.enum(["blocked", "active"]).default("active"),
 });
 
 //   login user validation schema

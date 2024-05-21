@@ -1,4 +1,5 @@
-import { Document, Types } from "mongoose";
+import { UserModel } from "./user.model";
+import { Document, Model, Types } from "mongoose";
 import { USER_ROLE } from "./user.constant";
 
 // user interface
@@ -9,6 +10,7 @@ export interface TUser {
   password: string;
   role: "admin" | "user";
   isDeleted: boolean;
+  status: "blocked" | "active";
 }
 
 export type TLoginUser = {
@@ -19,6 +21,9 @@ export type TLoginUser = {
 export interface UserDocument extends Document, TUser {
   createdAt?: Date;
   updatedAt?: Date;
+}
+export interface UserModel extends Model<TUser> {
+  isUserExistsByCustomId(id: string): Promise<TUser>;
 }
 
 export type PasswordHistory = {

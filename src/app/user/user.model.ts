@@ -33,6 +33,11 @@ const userSchema = new Schema<TUser>(
       enum: ["user", "admin"],
       default: "user",
     },
+    status: {
+      type: String,
+      enum: ["active", "blocked"],
+      default: "active",
+    },
   },
   {
     timestamps: true,
