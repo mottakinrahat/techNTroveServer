@@ -45,7 +45,6 @@ const featuresSchema = new Schema<TFeatures>({
 
 const productEarphoneSchema = new Schema<TEarphoneProduct>(
   {
-    _id: { type: String, required: true },
     brand: { type: Schema.Types.ObjectId, ref: "Brand", required: true },
     headphoneType: { type: String, required: true },
     productImage: { type: [String], required: true },

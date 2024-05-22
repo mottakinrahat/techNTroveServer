@@ -33,7 +33,6 @@ export interface TFeatures {
 }
 
 export interface TEarphoneProduct {
-  _id: string;
   brand: Types.ObjectId;
   headphoneType: string;
   productImage: string[];

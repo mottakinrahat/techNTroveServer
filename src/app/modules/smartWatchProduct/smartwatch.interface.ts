@@ -36,7 +36,6 @@ export interface TFeatures {
 }
 
 export interface TSmartWatchProduct {
-  _id: string;
   brand: Types.ObjectId;
   productImage: string[];
   price: number;

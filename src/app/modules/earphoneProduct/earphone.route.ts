@@ -1,6 +1,5 @@
 import express from "express";
 import validateRequest from "../../middleware/validateRequest";
-import { earphoneService } from "./earphone.service";
 import { earphoneController } from "./earphone.controller";
 import { EarphoneValidation } from "./earphone.validation";
 
