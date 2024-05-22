@@ -8,6 +8,7 @@ import { brandRoutes } from "../modules/brand/brand.route";
 import { ReviewRoutes } from "../modules/review/review.route";
 import { orderRoutes } from "../modules/Order/order.route";
 import { earphoneRoutes } from "../modules/earphoneProduct/earphone.route";
+import { SmartWatchRoutes } from "../modules/smartWatchProduct/smartwatch.route";
 
 const router = Router();
 const moduleRoutes = [
@@ -51,7 +52,12 @@ const moduleRoutes = [
     path: "/earphones",
     route: earphoneRoutes,
   },
+  {
+    path: "/smartwatch",
+    route: SmartWatchRoutes,
+  },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
 
 export default router;
+
