@@ -9,6 +9,8 @@ import { ReviewRoutes } from "../modules/review/review.route";
 import { orderRoutes } from "../modules/Order/order.route";
 import { earphoneRoutes } from "../modules/earphoneProduct/earphone.route";
 import { SmartWatchRoutes } from "../modules/smartWatchProduct/smartwatch.route";
+import { PowerBankRoutes } from "../modules/powerBankProduct/powerbank.route";
+import { HeadPhoneRoutes } from "../modules/headphoneProduct/headphone.route";
 
 const router = Router();
 const moduleRoutes = [
@@ -55,6 +57,14 @@ const moduleRoutes = [
   {
     path: "/smartwatch",
     route: SmartWatchRoutes,
+  },
+  {
+    path: "/powerbank",
+    route: PowerBankRoutes,
+  },
+  {
+    path: "/headphone",
+    route: HeadPhoneRoutes,
   },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
