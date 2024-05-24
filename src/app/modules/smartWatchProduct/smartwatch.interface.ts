@@ -15,7 +15,7 @@ export interface TBasicInfo {
   specialFeatures: string[];
 }
 export interface TExterior {
-  color: string;
+  color: string[];
 }
 export interface TWarrantyInfo {
   warranty: string;
@@ -34,10 +34,13 @@ export interface TFeatures {
   waterResistance: string;
   chargingTime: string;
 }
+export interface TProductImage {
+  images: string;
+}
 
 export interface TSmartWatchProduct {
   brand: Types.ObjectId;
-  productImage: string[];
+  productImage: [TProductImage];
   price: number;
   regularPrice: number;
   color: string[];

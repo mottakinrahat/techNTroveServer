@@ -3,6 +3,7 @@ import {
   TBasicInfo,
   TExterior,
   TFeatures,
+  TProductImage,
   TSmartWatchProduct,
   TSpecification,
   TWarrantyInfo,
@@ -26,7 +27,7 @@ const BasicInfoSchema = new Schema<TBasicInfo>({
 });
 
 const ExteriorSchema = new Schema<TExterior>({
-  color: { type: String, required: true },
+  color: { type: [String], required: true },
 });
 
 const WarrantyInfoSchema = new Schema<TWarrantyInfo>({
@@ -47,11 +48,14 @@ const FeaturesSchema = new Schema<TFeatures>({
   waterResistance: { type: String, required: true },
   chargingTime: { type: String, required: true },
 });
+const smartwatchImagesSchema = new Schema<TProductImage>({
+  images: { type: String, required: true },
+});
 
 const SmartWatchProductSchema = new Schema<TSmartWatchProduct>(
   {
     brand: { type: Schema.Types.ObjectId, ref: "Brand", required: true },
-    productImage: { type: [String], required: true },
+    productImage: { type: [smartwatchImagesSchema], required: true },
     price: { type: Number, required: true },
     regularPrice: { type: Number, required: true },
     color: { type: [String], required: true },
