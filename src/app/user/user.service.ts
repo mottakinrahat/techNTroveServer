@@ -54,7 +54,6 @@ const createUserIntoDB = async (payload: TUser) => {
 const loginUser = async (payload: TLoginUser) => {
   const { username, password } = payload;
 
-  // Find the user by email in the database
   const user = await UserModel.findOne({ username });
 
   if (!user) {

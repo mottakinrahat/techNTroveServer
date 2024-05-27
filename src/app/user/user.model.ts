@@ -52,7 +52,12 @@ userSchema.pre("save", async function (next) {
 
   next();
 });
-
+userSchema.statics.isPasswordMatched = async function (
+  plainTextPassword,
+  hashedPassword,
+) {
+  return await bcrypt.compare(plainTextPassword, hashedPassword);
+};
 //remove password using post method
 // userSchema.post<TUser>('save', function (doc, next) {
 //     if (doc) {
