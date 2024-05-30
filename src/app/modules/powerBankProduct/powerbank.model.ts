@@ -37,7 +37,6 @@ const FeaturesSchema = new Schema({
 const PowerBankProductSchema = new Schema({
  
   brand: { type: Schema.Types.ObjectId, ref: 'Brand', required: true },
-  headphoneType: { type: String, required: true },
   productImage: { type: [String], required: true },
   price: { type: Number, required: true },
   regularPrice: { type: Number, required: true },

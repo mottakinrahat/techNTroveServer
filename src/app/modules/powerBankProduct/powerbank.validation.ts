@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 // Define subdocument schemas with custom error messages
 const MainFeatureSchema = z.object({
@@ -11,7 +11,11 @@ const MainFeatureSchema = z.object({
 
 const PhysicalSpecificationSchema = z.object({
   dimension: z.string().min(1, { message: "Dimension is required" }),
-  color: z.array(z.string().min(1, { message: "Each color must be at least 1 character long" })),
+  color: z.array(
+    z
+      .string()
+      .min(1, { message: "Each color must be at least 1 character long" })
+  ),
 });
 
 const WarrantyInfoSchema = z.object({
@@ -34,25 +38,33 @@ const FeaturesSchema = z.object({
 
 // Define main schema with custom error message
 const PowerBankProductValidationSchema = z.object({
-  
   brand: z.string(),
-  headphoneType: z.string().min(1, { message: "Headphone type is required" }),
   productImage: z.array(z.string()),
   price: z.number().positive({ message: "Price must be a positive number" }),
-  regularPrice: z.number().positive({ message: "Regular price must be a positive number" }),
-  color: z.array(z.string().min(1, { message: "Each color must be at least 1 character long" })),
+  regularPrice: z
+    .number()
+    .positive({ message: "Regular price must be a positive number" }),
+  color: z.array(
+    z
+      .string()
+      .min(1, { message: "Each color must be at least 1 character long" })
+  ),
   name: z.string().min(1, { message: "Name is required" }),
   stock: z.boolean(),
   features: FeaturesSchema,
-  specification: z.array(SpecificationSchema).nonempty({ message: "Specifications are required" }),
+  specification: z
+    .array(SpecificationSchema)
+    .nonempty({ message: "Specifications are required" }),
   description: z.string().min(1, { message: "Description is required" }),
   flashSale: z.boolean(),
-  discount: z.number().nonnegative({ message: "Discount must be a non-negative number" }),
+  discount: z
+    .number()
+    .nonnegative({ message: "Discount must be a non-negative number" }),
   review: z.string(),
   category: z.string().min(1, { message: "Category is required" }),
   isDeleted: z.boolean(),
 });
 
 export const PowerBankValidation = {
-    PowerBankProductValidationSchema,
+  PowerBankProductValidationSchema,
 };

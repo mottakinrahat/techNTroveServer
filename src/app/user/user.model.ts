@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
-import { TUser } from "./user.interface";
+import { TUser, TUserModel } from "./user.interface";
 import config from "../config";
 
-const userSchema = new Schema<TUser>(
+const userSchema = new Schema<TUser, TUserModel>(
   {
     userImage: {
       type: String,
@@ -24,6 +24,7 @@ const userSchema = new Schema<TUser>(
     password: {
       type: String,
       required: true,
+      select: 0,
     },
     isDeleted: {
       type: Boolean,
@@ -54,17 +55,9 @@ userSchema.pre("save", async function (next) {
 });
 userSchema.statics.isPasswordMatched = async function (
   plainTextPassword,
-  hashedPassword,
+  hashedPassword
 ) {
   return await bcrypt.compare(plainTextPassword, hashedPassword);
 };
-//remove password using post method
-// userSchema.post<TUser>('save', function (doc, next) {
-//     if (doc) {
-//         doc.password = "";
-//     }
-//     next();
-// });
 
-// creating user model
-export const UserModel = model<TUser>("User", userSchema);
+export const UserModel = model<TUser, TUserModel>("User", userSchema);

@@ -31,7 +31,6 @@ export interface TFeatures {
 export interface TPowerBankProduct {
   _id: string;
   brand: Types.ObjectId;
-  headphoneType: string;
   productImage: string[];
   price: number;
   regularPrice: number;

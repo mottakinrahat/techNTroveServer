@@ -8,9 +8,9 @@ import { UserModel } from "../../user/user.model";
 import AppError from "../../utils/AppError";
 
 const loginUser = async (payload: TLoginUser) => {
-  const { username, password } = payload;
+  const { email, password } = payload;
 
-  const user = await UserModel.findOne({ username });
+  const user = await UserModel.findOne({ email });
 
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, ` User not found `);
@@ -28,6 +28,7 @@ const loginUser = async (payload: TLoginUser) => {
 
   const jwtPayload = {
     _id: user._id,
+    username: user?.username,
     email: user?.email,
     role: user?.role,
   };

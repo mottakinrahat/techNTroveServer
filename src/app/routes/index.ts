@@ -2,7 +2,6 @@ import { Router } from "express";
 import { EventItemRoutes } from "../modules/EventItem/eventItem.route";
 import { serviceRoutes } from "../modules/services/services.route";
 import { ClientRoutes } from "../modules/Client/client.route";
-import { UserRoutes } from "../user/user.route";
 import { productRoutes } from "../modules/product/product.route";
 import { brandRoutes } from "../modules/brand/brand.route";
 import { ReviewRoutes } from "../modules/review/review.route";

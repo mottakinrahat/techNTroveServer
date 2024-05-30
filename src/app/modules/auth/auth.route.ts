@@ -1,4 +1,4 @@
-import  express  from 'express';
+import express from "express";
 import validateRequest from "../../middleware/validateRequest";
 import { authController } from "./auth.controller";
 import { AuthValidation } from "./auth.validation";

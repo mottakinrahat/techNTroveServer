@@ -1,3 +1,4 @@
+import { TUser } from "./user.interface";
 import { UserModel } from "./user.model";
 import { Document, Model, Types } from "mongoose";
 import { USER_ROLE } from "./user.constant";
@@ -32,3 +33,7 @@ export type PasswordHistory = {
   timestamp: Date;
 };
 export type TUserRole = keyof typeof USER_ROLE;
+export interface TUserModel extends Model<TUser> {
+  // myStaticMethod(): number;
+  isUserExistsByCustomUserName(username: string): Promise<TUser>;
+}
