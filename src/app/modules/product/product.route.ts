@@ -10,7 +10,8 @@ router.post(
   validateRequest(productsValidationSchema.ProductValidationSchema),
   productController.createProduct
 );
-router.get("/", auth("user"), productController.getAllProduct);
+router.get("/", productController.getAllProduct);
 router.get("/:id", productController.getSingleProduct);
+router.get("/:id/reviews", productController.getSingleWithReview);
 
 export const productRoutes = router;

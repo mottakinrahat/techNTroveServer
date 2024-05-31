@@ -23,7 +23,7 @@ const getAllProduct = catchAsync(async (req, res) => {
   });
 });
 const getSingleProduct = catchAsync(async (req: any, res) => {
-  const id = req._id;
+  const { id } = req.params;
   const result = await productServices.getSingleProductIntoDB(id);
 
   sendResponse(res, {
@@ -33,9 +33,21 @@ const getSingleProduct = catchAsync(async (req: any, res) => {
     data: result,
   });
 });
+const getSingleWithReview = catchAsync(async (req: any, res) => {
+  const { id } = req.params;
+  const result = await productServices.getSingleProductWithReviewIntoDB(id);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 201,
+    message: "Product is retrieve with reviews successfully",
+    data: result,
+  });
+});
 
 export const productController = {
   createProduct,
   getAllProduct,
+  getSingleWithReview,
   getSingleProduct,
 };

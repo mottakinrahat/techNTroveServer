@@ -3,21 +3,13 @@ import AppError from "../../utils/AppError";
 import { ProductModel } from "../product/product.model";
 import { TReview } from "./review.interface";
 import { ReviewModel } from "./review.model";
-import { JwtPayload } from "jsonwebtoken";
 
-const createReviewIntoDB = async (userData: JwtPayload, payload: TReview) => {
+const createReviewIntoDB = async (payload: TReview) => {
   const isProductExist = await ProductModel.findById(payload?.productId);
   if (!isProductExist) {
     throw new AppError(httpStatus.NOT_FOUND, `Product not found`);
   }
-  const result = await ReviewModel.create({
-    ...payload,
-    createdBy: userData?._id,
-  });
-  await result.populate({
-    path: "createdBy",
-    select: " -password -createdAt -updatedAt",
-  });
+  const result = await ReviewModel.create(payload);
 
   return result;
 };

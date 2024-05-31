@@ -22,36 +22,16 @@ const getAllProductIntoDB = async () => {
   return result;
 };
 const getSingleProductIntoDB = async (id: string) => {
+  const result = await ProductModel.findById(id);
+  return result;
+};
+const getSingleProductWithReviewIntoDB = async (id: string) => {
   const convertedId = new mongoose.Types.ObjectId(id);
   const result = await ProductModel.aggregate([
     {
       $match: {
         _id: convertedId,
       },
-    },
-    {
-      $lookup: {
-        from: "users",
-        let: { creatorId: "$createdBy" },
-        pipeline: [
-          {
-            $match: {
-              $expr: { $eq: ["$_id", "$$creatorId"] },
-            },
-          },
-          {
-            $project: {
-              password: 0,
-              updatedAt: 0,
-              createdAt: 0,
-            },
-          },
-        ],
-        as: "createdBy",
-      },
-    },
-    {
-      $unwind: "$createdBy",
     },
     {
       $lookup: {
@@ -62,43 +42,12 @@ const getSingleProductIntoDB = async (id: string) => {
       },
     },
   ]);
-
-  if (result.length > 0) {
-    const foundProduct = await result[0];
-
-    // Fetching user details for each review's createdBy field
-    const reviewPromises = foundProduct.reviews.map(async (review: any) => {
-      const userId = review.createdBy;
-
-      // Fetch user details using userId from the 'users' collection
-      const userDetails = await UserModel.findOne(
-        { _id: userId },
-        { password: 0, updatedAt: 0, createdAt: 0 }
-      );
-
-      if (userDetails) {
-        review.createdBy = userDetails;
-      } else {
-        throw new AppError(
-          httpStatus.NOT_FOUND,
-          `User not found with the id ${userId}`
-        );
-      }
-      return review;
-    });
-
-    const populatedReviews = await Promise.all(reviewPromises);
-
-    foundProduct.reviews = populatedReviews;
-
-    return foundProduct;
-  } else {
-    throw new AppError(httpStatus.NOT_FOUND, `Course not found with`);
-  }
+  return result;
 };
 
 export const productServices = {
   createProductIntoDB,
   getAllProductIntoDB,
   getSingleProductIntoDB,
+  getSingleProductWithReviewIntoDB,
 };
