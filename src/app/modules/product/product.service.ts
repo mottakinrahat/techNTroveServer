@@ -35,6 +35,20 @@ const getSingleProductWithReviewIntoDB = async (id: string) => {
     },
     {
       $lookup: {
+        from: "brands",
+        localField: "brand",
+        foreignField: "_id",
+        as: "brand",
+      },
+    },
+    {
+      $unwind: {
+        path: "$brand",
+        preserveNullAndEmptyArrays: true,
+      },
+    },
+    {
+      $lookup: {
         from: "reviews",
         localField: "_id",
         foreignField: "productId",
@@ -42,6 +56,7 @@ const getSingleProductWithReviewIntoDB = async (id: string) => {
       },
     },
   ]);
+
   return result;
 };
 
