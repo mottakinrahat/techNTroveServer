@@ -3,7 +3,6 @@ import AppError from "../../utils/AppError";
 import { ProductModel } from "./product.model";
 import { TProduct } from "./product.interface";
 import mongoose from "mongoose";
-import { UserModel } from "../../user/user.model";
 
 const createProductIntoDB = async (payload: TProduct) => {
   const isUserExist = await ProductModel.findOne({ name: payload?.name });
@@ -17,7 +16,11 @@ const createProductIntoDB = async (payload: TProduct) => {
   return result;
 };
 
-const getAllProductIntoDB = async () => {
+const getAllProductIntoDB = async (query: any) => {
+  const filter: any = {};
+  if (query.category) {
+    filter.category = query.category;
+  }
   const result = await ProductModel.find().populate("brand");
   return result;
 };

@@ -5,12 +5,6 @@ import config from "../config";
 
 const userSchema = new Schema<TUser, TUserModel>(
   {
-    userImage: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-
     username: {
       type: String,
       required: true,
@@ -25,6 +19,10 @@ const userSchema = new Schema<TUser, TUserModel>(
       type: String,
       required: true,
       select: 0,
+    },
+    contactNo: {
+      type: Number,
+      required: true,
     },
     isDeleted: {
       type: Boolean,

@@ -5,10 +5,10 @@ import { USER_ROLE } from "./user.constant";
 
 // user interface
 export interface TUser {
-  userImage: string;
   username: string;
   email: string;
   password: string;
+  contactNo: number;
   role: "admin" | "user";
   isDeleted: boolean;
   status: "blocked" | "active";

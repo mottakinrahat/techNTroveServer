@@ -14,7 +14,6 @@ router.post(
   validateRequest(UserValidation.userValidationSchema),
   UserControllers.createUser
 );
-
 // login user
 router.post(
   "/login",

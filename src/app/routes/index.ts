@@ -11,6 +11,7 @@ import { SmartWatchRoutes } from "../modules/smartWatchProduct/smartwatch.route"
 import { PowerBankRoutes } from "../modules/powerBankProduct/powerbank.route";
 import { HeadPhoneRoutes } from "../modules/headphoneProduct/headphone.route";
 import { AuthRoutes } from "../modules/auth/auth.route";
+import { UserRoutes } from "../user/user.route";
 
 const router = Router();
 const moduleRoutes = [
@@ -25,10 +26,6 @@ const moduleRoutes = [
   {
     path: "/client",
     route: ClientRoutes,
-  },
-  {
-    path: "/products",
-    route: productRoutes,
   },
   {
     path: "/brands",
@@ -65,6 +62,10 @@ const moduleRoutes = [
   {
     path: "/headphone",
     route: HeadPhoneRoutes,
+  },
+  {
+    path: "/user",
+    route: UserRoutes,
   },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
