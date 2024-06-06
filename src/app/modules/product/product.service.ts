@@ -16,7 +16,9 @@ const createProductIntoDB = async (payload: TProduct) => {
   return result;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getAllProductIntoDB = async (query: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const filter: any = {};
   if (query.category) {
     filter.category = query.category;
@@ -63,9 +65,23 @@ const getSingleProductWithReviewIntoDB = async (id: string) => {
   return result;
 };
 
+const updateProductIntoDB = async (id: string, payload: TProduct) => {
+  const result = await ProductModel.findByIdAndUpdate(id, payload, {
+    new: true,
+  });
+  return result;
+};
+
+const deleteProductFromDB = async (id: string) => {
+  const result = await ProductModel.findByIdAndDelete(id);
+  return result;
+};
+
 export const productServices = {
   createProductIntoDB,
   getAllProductIntoDB,
   getSingleProductIntoDB,
   getSingleProductWithReviewIntoDB,
+  updateProductIntoDB,
+  deleteProductFromDB
 };

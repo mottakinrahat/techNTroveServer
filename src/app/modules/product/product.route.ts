@@ -2,7 +2,7 @@ import express from "express";
 import validateRequest from "../../middleware/validateRequest";
 import { productsValidationSchema } from "./product.validation";
 import { productController } from "./product.controller";
-import auth from "../../middleware/auth";
+// import auth from "../../middleware/auth";
 const router = express.Router();
 
 router.post(
@@ -13,5 +13,7 @@ router.post(
 router.get("/", productController.getAllProduct);
 router.get("/:id", productController.getSingleProduct);
 router.get("/:id/reviews", productController.getSingleWithReview);
+router.get("/:id", productController.deleteProduct);
+router.get("/:id", productController.updateProduct);
 
 export const productRoutes = router;

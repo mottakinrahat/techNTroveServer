@@ -13,17 +13,87 @@ const createEarphone = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
 const getAllEarphone = catchAsync(async (req, res) => {
   const result = await earphoneService.getAllEarphoneFromDB();
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Brand retrieved successfully",
+    message: "Earphones retrieved successfully",
     data: result,
+  });
+});
+
+const getSingleEarphone = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await earphoneService.getSingleEarphoneFromDB(id);
+
+  if (!result) {
+    sendResponse(res, {
+      statusCode: httpStatus.NOT_FOUND,
+      success: false,
+      message: "Earphone not found",
+      data:null
+    });
+  
+  }
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Earphone retrieved successfully",
+    data: result,
+  });
+});
+
+const updateEarphone = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await earphoneService.updateEarphoneInDB(id, req.body);
+
+  if (!result) {
+    sendResponse(res, {
+      statusCode: httpStatus.NOT_FOUND,
+      success: false,
+      message: "Earphone not found",
+      data:null
+    });
+  
+  }
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Earphone updated successfully",
+    data: result,
+  });
+});
+
+const deleteEarphone = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await earphoneService.deleteEarphoneFromDB(id);
+
+  if (!result) {
+    sendResponse(res, {
+      statusCode: httpStatus.NOT_FOUND,
+      success: false,
+      message: "Earphone not found",
+      data:null
+    });
+  
+  }
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Earphone deleted successfully",
+    data:result
   });
 });
 
 export const earphoneController = {
   createEarphone,
   getAllEarphone,
+  getSingleEarphone,
+  updateEarphone,
+  deleteEarphone,
 };

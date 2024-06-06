@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import { productServices } from "./product.service";
@@ -33,6 +34,29 @@ const getSingleProduct = catchAsync(async (req: any, res) => {
     data: result,
   });
 });
+
+const updateProduct = catchAsync(async (req: any, res) => {
+  const { id } = req.params;
+  const result = await productServices.updateProductIntoDB(id, req.body);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 201,
+    message: "Product is updated successfully",
+    data: result,
+  });
+});
+const deleteProduct = catchAsync(async (req: any, res) => {
+  const { id } = req.params;
+  const result = await productServices.deleteProductFromDB(id);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 201,
+    message: "Product is deleted successfully",
+    data: result,
+  });
+});
 const getSingleWithReview = catchAsync(async (req: any, res) => {
   const { id } = req.params;
   const result = await productServices.getSingleProductWithReviewIntoDB(id);
@@ -50,4 +74,6 @@ export const productController = {
   getAllProduct,
   getSingleWithReview,
   getSingleProduct,
+  updateProduct,
+  deleteProduct
 };

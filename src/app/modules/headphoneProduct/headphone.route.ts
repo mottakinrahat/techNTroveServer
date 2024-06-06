@@ -17,4 +17,16 @@ router.post(
 // GET route for retrieving all HeadPhones
 router.get("/", headPhoneController.getAllHeadPhone);
 
+// GET route for retrieving a single HeadPhone
+router.get("/:id", headPhoneController.getSingleHeadPhone);
+
+// PUT route for updating a single HeadPhone
+router.put("/:id",
+  validateRequest(HeadphoneProductValidation.HeadphoneProductValidationSchema), // Validate request if needed
+  headPhoneController.updateHeadPhone
+);
+
+// DELETE route for deleting a single HeadPhone
+router.delete("/:id", headPhoneController.deleteHeadPhone);
+
 export const HeadPhoneRoutes = router;
