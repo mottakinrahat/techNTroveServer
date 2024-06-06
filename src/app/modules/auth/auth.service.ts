@@ -2,7 +2,6 @@ import bcrypt from "bcrypt";
 import httpStatus from "http-status";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import config from "../../config";
-
 import { TLoginUser } from "./auth.interface";
 import { UserModel } from "../../user/user.model";
 import AppError from "../../utils/AppError";
@@ -19,6 +18,7 @@ const loginUser = async (payload: TLoginUser) => {
   if (isDeleted) {
     throw new AppError(httpStatus.FORBIDDEN, "User is deleted");
   }
+
   // Compare the provided password
   const passwordMatch = await bcrypt.compare(password, user.password);
 
@@ -41,7 +41,6 @@ const loginUser = async (payload: TLoginUser) => {
   };
 
   // generate access token
-
   const token = jwt.sign(jwtPayload, config.jwt_access_secret as string, {
     expiresIn: "30d",
   });

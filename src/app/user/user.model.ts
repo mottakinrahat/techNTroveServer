@@ -18,7 +18,6 @@ const userSchema = new Schema<TUser, TUserModel>(
     password: {
       type: String,
       required: true,
-      select: 0,
     },
     contactNo: {
       type: Number,
