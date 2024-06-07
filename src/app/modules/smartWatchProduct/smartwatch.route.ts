@@ -21,7 +21,7 @@ router.put(
   validateRequest(smartWatchValidation.SmartWatchProductValidationSchema),
   SmartWatchController.updateSmartWatch
 );
-
+router.get("/:id/reviews", SmartWatchController.getSingleWatchWithReview);
 router.delete("/:id", SmartWatchController.deleteSmartWatch);
 
 export const SmartWatchRoutes = router;
