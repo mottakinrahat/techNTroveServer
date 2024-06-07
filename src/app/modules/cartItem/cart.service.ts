@@ -1,7 +1,7 @@
-import { TCart } from "./cart.interface";
+import { TCartItem } from "./cart.interface";
 import { CartModel } from "./cart.model";
 
-const createCartIntoDB = async (payload: TCart) => {
+const createCartIntoDB = async (payload: TCartItem) => {
   const result = await CartModel.create(payload);
   return result;
 };

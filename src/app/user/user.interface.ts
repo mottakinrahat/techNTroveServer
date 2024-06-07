@@ -1,4 +1,3 @@
-import { TUser } from "./user.interface";
 import { UserModel } from "./user.model";
 import { Document, Model, Types } from "mongoose";
 import { USER_ROLE } from "./user.constant";
