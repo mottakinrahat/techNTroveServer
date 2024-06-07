@@ -7,11 +7,8 @@ const reviewSchema = new Schema<TReview>(
 
     reviewDescription: { type: String, required: true },
     rating: { type: Number, required: true },
-    createdBy: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+    username: { type: String, required: true },
+    userEmail: { type: String, required: true },
     isDeleted: { type: Boolean, default: false },
   },
   { timestamps: true }

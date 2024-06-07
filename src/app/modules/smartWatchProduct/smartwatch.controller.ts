@@ -34,7 +34,7 @@ const getAllSmartWatch = catchAsync(async (req: Request, res: Response) => {
 const getSmartWatchById = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await SmartWatchServices.getSmartWatchByIdFromDB(id);
-  
+
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -47,7 +47,7 @@ const getSmartWatchById = catchAsync(async (req: Request, res: Response) => {
 const updateSmartWatch = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await SmartWatchServices.updateSmartWatchInDB(id, req.body);
-  
+
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
@@ -60,11 +60,24 @@ const updateSmartWatch = catchAsync(async (req: Request, res: Response) => {
 const deleteSmartWatch = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
   const result = await SmartWatchServices.deleteSmartWatchFromDB(id);
- 
+
   sendResponse(res, {
     success: true,
     statusCode: 200,
     message: "Smart Watch deleted successfully",
+    data: result,
+  });
+});
+const getSingleWatchWithReview = catchAsync(async (req: any, res) => {
+  const { id } = req.params;
+  const result = await SmartWatchServices.getSingleSmartWatchWithReviewIntoDB(
+    id
+  );
+
+  sendResponse(res, {
+    success: true,
+    statusCode: 201,
+    message: "Watches is retrieve with reviews successfully",
     data: result,
   });
 });
@@ -75,4 +88,5 @@ export const SmartWatchController = {
   getSmartWatchById,
   updateSmartWatch,
   deleteSmartWatch,
+  getSingleWatchWithReview,
 };

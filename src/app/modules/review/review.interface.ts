@@ -4,6 +4,7 @@ export interface TReview {
   productId: Types.ObjectId;
   reviewDescription: string;
   rating: number;
-  createdBy: Types.ObjectId;
+  username: string;
+  userEmail: string;
   isDeleted: boolean;
 }

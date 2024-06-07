@@ -7,7 +7,8 @@ const router = express.Router();
 router.post(
   "/",
   validateRequest(cartValidation.cartValidationSchema),
-cartController.createCart
+  cartController.createCart
 );
 router.get("/", cartController.getAllCarts);
 
+export const CartRoutes = router;
