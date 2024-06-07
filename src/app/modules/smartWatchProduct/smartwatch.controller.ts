@@ -7,6 +7,8 @@ import { Request, Response } from "express";
 
 // Create a smart watch product
 const createSmartWatch = catchAsync(async (req: Request, res: Response) => {
+  
+
   const result = await SmartWatchServices.createSmartWatchIntoDB(req.body);
 
   sendResponse(res, {
@@ -61,7 +63,7 @@ const deleteSmartWatch = catchAsync(async (req: Request, res: Response) => {
  
   sendResponse(res, {
     success: true,
-    statusCode: httpStatus.NO_CONTENT,
+    statusCode: 200,
     message: "Smart Watch deleted successfully",
     data: result,
   });

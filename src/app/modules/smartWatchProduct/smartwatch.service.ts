@@ -31,7 +31,7 @@ const updateSmartWatchInDB = async (id: string, payload: Partial<TSmartWatchProd
 // services/smartwatch.service.ts
 // Delete a smart watch product from the database by ID
 const deleteSmartWatchFromDB = async (id: string): Promise<TSmartWatchProduct | null> => {
-  const result = await SmartWatchProductModel.findByIdAndDelete(id).lean().exec();
+  const result = await SmartWatchProductModel.findByIdAndDelete(id);
   return result;
 };
 
