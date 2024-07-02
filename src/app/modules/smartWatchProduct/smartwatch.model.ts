@@ -66,7 +66,7 @@ const SmartWatchProductSchema = new Schema<TSmartWatchProduct>(
     description: { type: String, required: true },
     flashSale: { type: Boolean, required: true },
     discount: { type: Number, required: true },
-    review: { type: Schema.Types.ObjectId, ref: "Review", required: true },
+    review:  { type: String, required: true },
     category: { type: String, required: true },
     isDeleted: { type: Boolean, default: false },
   },

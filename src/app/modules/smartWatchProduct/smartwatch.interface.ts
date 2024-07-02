@@ -51,7 +51,7 @@ export interface TSmartWatchProduct {
   description: string;
   flashSale: boolean;
   discount: number;
-  review: Types.ObjectId;
+  review: string;
   category: string;
   isDeleted: boolean;
 }
