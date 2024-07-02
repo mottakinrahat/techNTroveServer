@@ -5,7 +5,9 @@ import { TProduct } from "./product.interface";
 import mongoose from "mongoose";
 
 const createProductIntoDB = async (payload: TProduct) => {
-  const isUserExist = await ProductModel.findOne({ name: payload?.name });
+  const isUserExist = await ProductModel.findOne({
+    name: payload?.productName,
+  });
 
   if (isUserExist) {
     throw new AppError(httpStatus.BAD_REQUEST, "Product already exist");
@@ -83,5 +85,5 @@ export const productServices = {
   getSingleProductIntoDB,
   getSingleProductWithReviewIntoDB,
   updateProductIntoDB,
-  deleteProductFromDB
+  deleteProductFromDB,
 };
